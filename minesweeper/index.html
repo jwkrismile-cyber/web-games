@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>扫雷</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="header">
+      <h1 class="title">扫雷</h1>
+    </header>
+
+    <section class="panel">
+      <nav class="levels" id="levels">
+        <button type="button" data-level="beginner" class="active">
+          <span>初级</span><small>9×9 · 10雷</small>
+        </button>
+        <button type="button" data-level="intermediate">
+          <span>中级</span><small>16×16 · 40雷</small>
+        </button>
+        <button type="button" data-level="expert">
+          <span>高级</span><small>16×30 · 99雷</small>
+        </button>
+        <button type="button" data-level="custom">
+          <span>自定义</span><small>自由设置</small>
+        </button>
+      </nav>
+
+      <form id="custom-form" class="custom hidden">
+        <div class="custom-fields">
+          <label>行数<input type="number" id="custom-rows" min="5" max="30" value="16"></label>
+          <label>列数<input type="number" id="custom-cols" min="5" max="50" value="16"></label>
+          <label>雷数<input type="number" id="custom-mines" min="1" value="40"></label>
+          <button type="submit" class="btn-primary">开始</button>
+        </div>
+        <p class="hint" id="custom-hint"></p>
+      </form>
+
+      <div class="status">
+        <div class="stat">
+          <span class="stat-label">💣 剩余雷数</span>
+          <span class="stat-value" id="mine-counter">10</span>
+        </div>
+        <button type="button" id="face" class="face" title="重新开始（快捷键 R）">🙂</button>
+        <div class="stat stat-right">
+          <span class="stat-label">⏱ 用时（秒）</span>
+          <span class="stat-value" id="timer">0</span>
+        </div>
+      </div>
+
+      <div class="board-wrap">
+        <div id="board" class="board"></div>
+      </div>
+
+      <div class="result-row">
+        <p id="message" class="message"></p>
+        <p id="best" class="best"></p>
+      </div>
+    </section>
+
+    <ul class="tips">
+      <li><kbd>左键</kbd>翻开</li>
+      <li><kbd>右键</kbd>插旗</li>
+      <li><kbd>点数字</kbd>快速翻开周围</li>
+      <li><kbd>长按</kbd>手机插旗</li>
+      <li><kbd>R</kbd>重新开始</li>
+    </ul>
+  </main>
+
+  <script src="game.js"></script>
+</body>
+</html>
