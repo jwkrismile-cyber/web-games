@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>打砖块</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div>
+        <h1 class="title">打砖块</h1>
+        <p class="lead">挡板接球，打掉全部砖块 · 共 8 关</p>
+      </div>
+      <button type="button" id="btn-restart" class="restart">重开</button>
+    </header>
+
+    <nav class="levels" id="levels"></nav>
+
+    <div class="hud">
+      <span>关卡 <strong id="hud-level">1</strong></span>
+      <span>分数 <strong id="hud-score">0</strong></span>
+      <span>生命 <strong id="hud-lives">3</strong></span>
+    </div>
+
+    <div class="stage">
+      <canvas id="canvas" width="480" height="640"></canvas>
+      <div id="overlay" class="overlay">
+        <p id="overlay-text">点击或按空格发球</p>
+      </div>
+    </div>
+
+    <p class="tips">鼠标 / 触屏移动挡板 · ← → 或 A D · 空格发球 / 暂停</p>
+  </main>
+
+  <script src="game.js"></script>
+</body>
+</html>
