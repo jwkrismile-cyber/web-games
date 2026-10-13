@@ -233,15 +233,14 @@ function createBricks(level) {
     for (let c = 0; c < COLS; c++) {
       const mark = line[c];
       if (!mark || mark === '.') continue;
-      const steel = mark === 'S';
+      const hp = mark === 'S' ? 4 : cfg.hp;
       bricks.push({
         x: BRICK_GAP + c * (bw + BRICK_GAP),
         y: BRICK_TOP + r * (BRICK_H + BRICK_GAP),
         w: bw,
         h: BRICK_H,
-        hp: steel ? Infinity : cfg.hp,
-        maxHp: cfg.hp,
-        steel: steel,
+        hp: hp,
+        maxHp: hp,
       });
     }
   });
@@ -324,11 +323,11 @@ function bounceOffRect(rect, prevX, prevY) {
 }
 
 /**
- * 还没打破的普通砖数量。钢砖不算过关条件。
+ * 还没打破的砖数量。
  * @returns {number}
  */
 function remainingBricks() {
-  return state.bricks.filter((b) => !b.steel && b.hp > 0).length;
+  return state.bricks.filter((b) => b.hp > 0).length;
 }
 
 /**
@@ -469,15 +468,11 @@ function stepBall(dt) {
     if (!circleHitsRect(state.ball.x, state.ball.y, BALL_R, brick)) continue;
     bounceOffRect(brick, prevX, prevY);
     accelerate();
-    if (!brick.steel) {
-      brick.hp -= 1;
-      playHit(brick.hp <= 0);
-      if (brick.hp <= 0) state.score += 10 * (state.level + 1);
-      else state.score += 2;
-      updateHud();
-    } else {
-      playHit(false);
-    }
+    brick.hp -= 1;
+    playHit(brick.hp <= 0);
+    if (brick.hp <= 0) state.score += 10 * (state.level + 1);
+    else state.score += 2;
+    updateHud();
     break;
   }
 
@@ -556,7 +551,7 @@ function drawBackground() {
 }
 
 /**
- * 画一块浅蓝玻璃砖。血量越高颜色越深，打不破的最深。
+ * 画一块浅蓝玻璃砖。血量越高颜色越深，打掉一层就变浅。
  * @param {object} brick
  */
 function drawBrick(brick) {
@@ -564,8 +559,9 @@ function drawBrick(brick) {
     1: '#c5e4f8',
     2: '#9dcef3',
     3: '#8ec8ee',
+    4: '#5eaddf',
   };
-  const fill = brick.steel ? '#5eaddf' : tones[brick.hp] || tones[1];
+  const fill = tones[brick.hp] || tones[1];
 
   roundPath(brick.x, brick.y, brick.w, brick.h, 5);
   ctx.fillStyle = fill;
