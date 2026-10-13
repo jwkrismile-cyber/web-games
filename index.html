@@ -60,6 +60,19 @@
       font-size: 34px;
     }
 
+    .game-icon.blocks {
+      display: flex;
+      gap: 5px;
+      height: 34px;
+      align-items: center;
+    }
+
+    .game-icon.blocks i {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+    }
+
     .game-name {
       font-size: 18px;
       font-weight: 600;
@@ -80,6 +93,15 @@
         <span class="game-icon">💣</span>
         <span class="game-name">扫雷</span>
         <span class="game-desc">经典扫雷，每局随机布雷，支持三档难度和自定义尺寸。</span>
+      </a>
+      <a class="game-card" href="triple-match/">
+        <span class="game-icon blocks" aria-hidden="true">
+          <i style="background:#e03131"></i>
+          <i style="background:#1c7ed6"></i>
+          <i style="background:#2f9e44"></i>
+        </span>
+        <span class="game-name">叠叠消</span>
+        <span class="game-desc">点没被挡住的色块放进卡槽，三个同色消除。共 8 关，越往后越难。</span>
       </a>
     </div>
   </main>

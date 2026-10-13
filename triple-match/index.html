@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>叠叠消</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div>
+        <h1 class="title">叠叠消</h1>
+        <p class="lead">点最上面那层，三块同色即可消除 · 共 8 关</p>
+      </div>
+      <div class="topbar-right">
+        <div class="left-badge">还剩 <strong id="left-counter">24</strong></div>
+        <button type="button" id="btn-restart" class="restart">重开</button>
+      </div>
+    </header>
+
+    <nav class="levels" id="levels"></nav>
+
+    <div class="table">
+      <div class="board-wrap" id="board-wrap">
+        <div id="board" class="board"></div>
+      </div>
+
+      <div class="tray">
+        <span class="tray-label">卡槽</span>
+        <div id="slot" class="slot" aria-label="卡槽，最多 7 格"></div>
+      </div>
+    </div>
+
+    <div class="tools">
+      <button type="button" id="btn-undo" class="tool">撤回 <em id="undo-left">3</em></button>
+      <button type="button" id="btn-shuffle" class="tool">洗牌 <em id="shuffle-left">1</em></button>
+    </div>
+
+    <p id="message" class="message"></p>
+  </main>
+
+  <script src="game.js"></script>
+</body>
+</html>
